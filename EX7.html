@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>formulaire d’inscription pour un site e-commerce</title>
+
+    <style>
+       
+       body {
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+         #form_inscription {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        #form_inscription div {
+            margin-bottom: 15px;
+        }
+        #erreur {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+
+        }
+        button {
+            width: 50%;
+            padding: 10px;
+            justify-items: center;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        #form_inscription button:hover {
+            background-color: #218838;
+        }
+        input {
+            border-style: solid;
+        }
+        label {
+            font-size: 16px;
+        }
+       p {
+        color: green;
+       }
+
+    </style>
+</head>
+<body>
+    <form id="form_inscription">
+        <div>
+            <label>Nom </label>
+            <input type="text" id="nom" required>
+        </div>
+        <div>
+            <label>Prénom </label>
+            <input type="text" id="prenom" required>
+        </div>
+        <div>
+            <label>Adresse </label>
+            <input type="text" id="adresse" required>
+        </div>
+        <div>
+            <label>Email </label>
+            <input type="email" id="email" required>
+        </div>
+        <div>
+            <label>login </label>
+            <input type="text" id="login" required>
+        </div>
+             <div>
+            <label >Mot de passe</label>
+            <input type="password" id="mot_de_passe" required>
+        </div>
+        <div>
+            <label>Confirmer votre mot de passe </label>
+            <input type="password" id="confirm_password" required>
+        </div>
+        <div>
+            <label>Téléphone  </label>
+            <input type="tel" id="tel" required>
+        </div>
+        <div>
+            <label>Civilité</label>
+            <select id="civilite" required>
+                <option value="">Sélectionner</option>
+                <option value="M">Monsieur</option>
+                <option value="Mme">Madame</option>
+            </select>
+            
+        </div>
+        <div>
+            <label>Pays </label>
+            <input type="text" id="pays" required>
+        </div>
+        <button type="button" onclick="VerifierDonnee()">Valider</button>
+
+        <div id="erreur"></div>
+    </form>
+    
+
+    <script>
+ function VerifierDonnee(){
+        let email = document.getElementById("email").value.trim();
+        let telephone = document.getElementById("tel").value.trim();
+        let mdp = document.getElementById("mot_de_passe").value.trim();
+        let confrm_mdp = document.getElementById("confirm_password").value.trim();
+        let nom = document.getElementById("nom").value.trim();
+        let prenom = document.getElementById("prenom").value.trim();
+        let adresse = document.getElementById("adresse").value.trim();
+        let login = document.getElementById("login").value.trim();
+        let civilite = document.getElementById("civilite").value.trim();
+        let pays = document.getElementById("pays").value.trim();
+        let erreur = document.getElementById("erreur");
+
+
+        if (nom==="" || prenom==="" || adresse==="" || email==="" || login==="" || mdp==="" || confrm_mdp==="" || telephone==="" || civilite==="" || pays==="") {
+                    erreur.textContent = "Tous les Champs sont obligatoires.";
+                    return false;
+                }else{
+                     // verifier si les deux password #
+    if (mdp !== confrm_mdp) {
+        erreur.textContent = "Les deux champs du mot de passe doivent etre identiques";
+        return false;
+    }
+// verification de l'email
+     let regex_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+     if (!regex_email.test(email)) {
+          erreur.textContent = "Email invalide !";
+          return false;
+     }
+// verification du numero de telephone 
+     let regex_num = /^(?:\+212|0)([5-7]\d{8})$/;
+     if (!regex_num.test(telephone)) {
+        erreur.textContent = "Numéro de téléphone invalide !";
+        return false ;
+     }
+         
+     document.getElementById("erreur").innerHTML = "<p> Merci pour votre inscription !</p>";
+     resetForm(); // Reinitialiser le formulaire apres que tous est correct
+                }
+   
+  }
+   function resetForm() {
+    document.getElementById("email").value ="";
+    document.getElementById("tel").value ="";
+    document.getElementById("mot_de_passe").value ="";
+    document.getElementById("confirm_password").value ="";
+    document.getElementById("nom").value ="";
+    document.getElementById("prenom").value ="";
+    document.getElementById("adresse").value ="";
+    document.getElementById("login").value ="";
+    document.getElementById("civilite").value ="";
+    document.getElementById("pays").value ="";
+   }
+    </script>
+</body>
+</html>

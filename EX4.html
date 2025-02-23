@@ -2,25 +2,104 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title> Somme des chiffres  </title>
+    <title> Operations sur les matrices </title>
 </head>
 <body>
     <script>
-        function SommeChiffre(nbre) {
-        nbre = Math.abs(nbre);
-        let somme = 0;
-        
-           while(nbre > 0) {
-             
-            somme+= nbre % 10;
-           nbre = Math.floor(nbre/10);
-           }
-           return somme;
-    
+       // Fonction pour générer une matrice n*n aléatoire
+function genererMatrice(n) {
+    let matrice = [];
+    for (let i = 0; i < n; i++) {
+        matrice[i] = [];
+        for (let j = 0; j < n; j++) {
+            matrice[i][j] = Math.floor(Math.random() * 10); // Valeurs entre 0 et 9
         }
+    }
+    return matrice;
+}
 
-        var nombre = parseInt(prompt("Entrer un nombre"));
-         console.log(" la somme des chiffres du nombre est  " + SommeChiffre(nombre));
+// Fonction pour afficher une matrice
+function afficherMatrice(matrice) {
+    matrice.forEach(row => console.log(row.join("\t")));
+    console.log("\n");
+}
+
+// Addition de deux matrices
+function additionMatrice(A, B) {
+    let n = A.length;
+    let resultat = new Array(n).fill().map(() => new Array(n).fill(0));
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            resultat[i][j] = A[i][j] + B[i][j];
+        }
+    }
+    return resultat;
+}
+
+// Soustraction de deux matrices
+function soustractionMatrice(A, B) {
+    let n = A.length;
+    let resultat = new Array(n).fill().map(() => new Array(n).fill(0));
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            resultat[i][j] = A[i][j] - B[i][j];
+        }
+    }
+    return resultat;
+}
+
+// Multiplication de deux matrices
+function multiplicationMatrice(A, B) {
+    let n = A.length;
+    let resultat = new Array(n).fill().map(() => new Array(n).fill(0));
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            for (let k = 0; k < n; k++) {
+                resultat[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+    return resultat;
+}
+
+// Transposée d'une matrice
+function transposeeMatrice(A) {
+    let n = A.length;
+    let resultat = new Array(n).fill().map(() => new Array(n).fill(0));
+    for (let i = 0; i < n; i++) {
+        for (let j = 0; j < n; j++) {
+            resultat[j][i] = A[i][j];
+        }
+    }
+    return resultat;
+}
+
+// Test des fonctions avec des matrices 3x3
+let n = 3;
+let matriceA = genererMatrice(n);
+let matriceB = genererMatrice(n);
+
+console.log("Matrice A :");
+afficherMatrice(matriceA);
+
+console.log("Matrice B :");
+afficherMatrice(matriceB);
+
+console.log("Addition (A + B) :");
+afficherMatrice(additionMatrice(matriceA, matriceB));
+
+console.log("Soustraction (A - B) :");
+afficherMatrice(soustractionMatrice(matriceA, matriceB));
+
+console.log("Multiplication (A * B) :");
+afficherMatrice(multiplicationMatrice(matriceA, matriceB));
+
+console.log("Transposée de A :");
+afficherMatrice(transposeeMatrice(matriceA));
+
+console.log("Transposée de B :");
+afficherMatrice(transposeeMatrice(matriceB));
+
     </script>
 </body>
 </html>

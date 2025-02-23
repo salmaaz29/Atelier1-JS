@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title> Carrousel des Images </title>
+    <style>
+           .carrousel {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 800px;
+        margin: 20px auto;
+        position: relative;
+        background: #f8f8f8;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Style pour les images */
+    .images {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .images img {
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: none; /* Masquer toutes les images par défaut */
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    /* Afficher uniquement l'image active */
+    .images img.active {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Style pour les boutons */
+    .button1, .button2 {
+        margin: 0 10px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+       
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+
+    </style>
+</head>
+<body> 
+    <div class="carrousel">
+        <div class="button2">
+            <button onclick="precedent()"> Précédent</button>
+         </div>
+
+        <div class="images">
+            <img src="imges/img1.jpeg" alt="image1" class="active">
+            <img src="imges/img2.jpeg" alt="image2">
+            <img src="imges/img3.jpeg" alt="image3">
+         </div>
+        
+        <div class="button1">
+            <button onclick="suivant()"> Suivant</button>
+        </div>
+        
+    </div>
+    <script>
+        // selectionner tous les images 
+        let imgs = document.querySelectorAll(".images img");
+        
+        // for (let i=0 ; i<imgs.length;i++){
+        //     alert (imgs[i].src);
+        // }
+        let indice = 0;
+        
+            function suivant() {
+                imgs[indice].classList.remove("active");
+                indice = (indice + 1) % imgs.length ;
+                imgs[indice].classList.add("active");
+            }
+            function precedent() {
+                imgs[indice].classList.remove("active");
+                indice = (indice - 1 + imgs.length) % imgs.length;
+                imgs[indice].classList.add("active");  
+        
+            }
+        </script>
+</body>
+
+</html>

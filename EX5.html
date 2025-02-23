@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title> Conversion en biniare </title>
+</head>
+<body>
+    <script>
+        function ConversionBinaire(nbre) {
+        if (nbre === 0){
+            return "";
+        }else{
+            return ConversionBinaire(Math.floor(nbre/2)) + (nbre%2) ;
+        }
+        }
+
+        var nombre = parseInt(prompt("Entrer un nombre "));
+         console.log(" la conversion en bianire du nombre "+ nombre + " est : " + ConversionBinaire(nombre));
+    </script>
+</body>
+</html>
