@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title> PGCD de deux nombres </title>
+</head>
+<body>
+    <script>
+        function PGCD(n1, n2) {
+        n1 = Math.abs(n1);
+        n2 = Math.abs(n2);
+           while(n2!==0) {
+             
+            let reste = n1 % n2 ;
+            n1 = n2;
+            n2 = reste;
+           }
+           return n1;
+    
+        }
+
+        var nombre1 = parseInt(prompt("Entrer le 1er nombre"));
+        var nombre2 = parseInt(prompt("Entrer le 2eme nombre"));
+         console.log(" le pgcd des nombres " + nombre1+ " , " + nombre2 +" est : " + PGCD(nombre1, nombre2));
+    </script>
+</body>
+</html>

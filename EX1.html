@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Multiplication</title>
+</head>
+<body>
+    <script>
+
+        function TableMultiplication(nbre) {
+            let table = ""; // ou on va stocker la table de multiplication  sous forme de chaine de caractere 
+            for (let i = 0; i <= 10; i++) {
+            table += `${i} x ${nbre} = ${nbre*i} \n`; // a chaque fois on ajoute une ligne a la table 
+            }
+            return table;
+        }
+
+        var nombre = parseInt(prompt("Entrer un nombre entier"));
+        let table = TableMultiplication(nombre);
+        console.log(table); 
+    </script>
+</body>
+</html>

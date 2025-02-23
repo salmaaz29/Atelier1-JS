@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title> Somme des chiffres  </title>
+</head>
+<body>
+    <script>
+        function SommeChiffre(nbre) {
+        nbre = Math.abs(nbre);
+        let somme = 0;
+        
+           while(nbre > 0) {
+             
+            somme+= nbre % 10;
+           nbre = Math.floor(nbre/10);
+           }
+           return somme;
+    
+        }
+
+        var nombre = parseInt(prompt("Entrer un nombre"));
+         console.log(" la somme des chiffres du nombre est  " + SommeChiffre(nombre));
+    </script>
+</body>
+</html>
